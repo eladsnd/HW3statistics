@@ -21,7 +21,7 @@ def A_r_l(x, y):
 
 
 def B_l_s(x, y):
-    cov = np.cov(x, y)[0][1]
+    cov = np.cov(x, y,bias=True)[0][1]
     var = np.var(x)
     return cov / var
 
@@ -58,7 +58,7 @@ def funcs_a_to_c(x, y,title):
     LS(x, y)
     # Q3_C
     slope = B_l_s(x, y)
-    r = np.cov(x, y)[0][1] / (np.std(y) * np.std(x))
+    r = np.cov(x, y,bias=True)[0][1] / (np.std(y) * np.std(x))
     r_square = np.square(r)
     sst = np.var(y)
     sse = (r_square + 1) * sst

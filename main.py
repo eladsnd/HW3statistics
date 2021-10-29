@@ -22,7 +22,7 @@ def A_r_l(x, y):
 
 
 def B_l_s(x, y):
-    cov = np.cov(x, y)[0][1]
+    cov = np.cov(x, y,bias=True)[0][1]
     var = np.var(x)
     return cov / var
 
@@ -54,7 +54,7 @@ def q2(df):
     plt.plot(x, ls, '-b')
 
     # Q3_d
-    r = np.cov(x, y)[0][1] / (np.std(y) * np.std(x))
+    r = np.cov(x, y,bias=True)[0][1] / (np.std(y) * np.std(x))
 
     r_square = np.square(r)
     print("B_ls : " + str(bls) + "\nR : " + str(r) + "\nR^2 : " + str(r_square))

@@ -34,8 +34,7 @@ def A_l_s(x, y):
     return y_mean - x_mean * bls
 
 
-if __name__ == '__main__':
-    plt.figure(0)
+def q2(df):
     # Q2_a
     df.sort_values(by=['HEIGHT'])
     y = df['WEIGHT'].to_numpy()
@@ -60,29 +59,13 @@ if __name__ == '__main__':
     r_square = np.square(r)
     print("B_ls : " + str(bls) + "\nR : " + str(r) + "\nR^2 : " + str(r_square))
 
+
+if __name__ == '__main__':
+    plt.figure(0)
+    q2(df)
+
     plt.figure(1)
-    df= df.drop(df['HEIGHT'].idxmax())
-    df.sort_values(by=['HEIGHT'])
-    y = df['WEIGHT'].to_numpy()
-    x = df['HEIGHT'].to_numpy()
-    plt.ylim(60, 80)
-    plt.scatter(x, y)
-    # Q3_b_res
-    a = A_r_l(x, y)
-    b = B_r_l(x, y)
-    res = b * x + a
-    plt.plot(x, res, '-r')
-
-    # Q3_c_ls
-    bls = B_l_s(x, y)
-    als = A_l_s(x, y)
-    ls = bls * x + als
-    plt.plot(x, ls, '-b')
-
-    # Q3_d
-    r = np.cov(x, y)[0][1] / (np.std(y) * np.std(x))
-
-    r_square = np.square(r)
-    print("B_ls : " + str(bls) + "\nR : " + str(r) + "\nR^2 : " + str(r_square))
+    df_e = df.drop(df['HEIGHT'].idxmax())
+    q2(df_e)
 
     plt.show()
